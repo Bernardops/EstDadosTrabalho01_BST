@@ -1,0 +1,13 @@
+digraph ArvoreBin {
+  50;
+  50 -> 10 [label="left"];
+  10;
+  10 -> 40 [label="right"];
+  40;
+  40 -> 20 [label="left"];
+  20;
+  50 -> 70 [label="right"];
+  70;
+  70 -> 60 [label="left"];
+  60;
+}
