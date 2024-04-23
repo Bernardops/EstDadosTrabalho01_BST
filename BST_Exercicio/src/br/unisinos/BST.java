@@ -10,7 +10,7 @@ public class BST {
     public BST() {
         this.root = null;
     }
-
+//O código abaixo escreve o preOrdem:
     private void escreverPreOrdemDot(TreeNode root, BufferedWriter out) throws IOException {
         if (root != null) {
             // Escreve o nó atual
@@ -31,6 +31,8 @@ public class BST {
     }
 
     
+    
+    //Código usado para gerar o arquivo no dot.
     public void gerarArqDot(String filename) {
         try {
             FileWriter fileWriter = new FileWriter(filename);
@@ -47,10 +49,11 @@ public class BST {
             System.err.println("Erro ao gerar arquivo DOT: " + e.getMessage());
         }
     }
-    
+    //FUnção para inserir na árvore
     public void insert(int val) {
         root = insertNode(root, val);
     }
+    //FUnção para inserir na árvore
 
     private TreeNode insertNode(TreeNode root, int val) {
         if (root == null) {
@@ -63,10 +66,11 @@ public class BST {
         }
         return root;
     }
-
+    //Pesquisa dentro da BST
     public boolean search(int val) {
         return searchNode(root, val);
     }
+    //Pesquisa dentro da BST
 
     private boolean searchNode(TreeNode root, int val) {
         if (root == null) {
@@ -80,7 +84,7 @@ public class BST {
             return searchNode(root.right, val);
         }
     }
-
+//Traz a preorder
     public void preorderTraversal() {
         preorder(root);
     }
@@ -92,11 +96,12 @@ public class BST {
             preorder(root.right);
         }
     }
+    //Mostra em ordem
 
     public void inorderTraversal() {
         inorder(root);
     }
-
+    //Mostra em ordem
     private void inorder(TreeNode root) {
         if (root != null) {
             inorder(root.left);
@@ -104,10 +109,12 @@ public class BST {
             inorder(root.right);
         }
     }
+    //Mostra em pos ordem
 
     public void postorderTraversal() {
         postorder(root);
     }
+    //Mostra em pos ordem
 
     private void postorder(TreeNode root) {
         if (root != null) {
@@ -116,10 +123,12 @@ public class BST {
             System.out.print(root.val + " ");
         }
     }
+    //Remove um nodo da BST
 
     public void remove(int val) {
         root = removeNode(root, val);
     }
+    //Remove um nodo da BST
 
     private TreeNode removeNode(TreeNode root, int val) {
         if (root == null) {
@@ -140,7 +149,7 @@ public class BST {
         }
         return root;
     }
-
+//Traz o valor minimo encontrado
     private int minValue(TreeNode root) {
         int minVal = root.val;
         while (root.left != null) {
@@ -149,8 +158,10 @@ public class BST {
         }
         return minVal;
     }
+    //Main, onde é rodado o programa e é colocado conteúdo na BST
 
     public static void main(String[] args) {
+    	//Criação da BST e inserção de nodos
         BST bst = new BST();
         bst.insert(50);
         bst.insert(10);
@@ -162,6 +173,7 @@ public class BST {
         bst.insert(100);
         bst.insert(90);
 
+    	//Mostra em diferentes orders
 
         System.out.println("Inorder traversal:");
         bst.inorderTraversal();
@@ -169,16 +181,18 @@ public class BST {
         bst.preorderTraversal();
         System.out.println("\nPostorder traversal:");
         bst.postorderTraversal();
+    	//Pesquisa dentro da BST
 
         int searchValue = 50;
         System.out.println("\nSearching for value " + searchValue + ": " + bst.search(searchValue));
+    	//Remoção
 
         int removeValue = 190;
         
         bst.remove(removeValue);
         System.out.println("After removing " + removeValue + ":");
         bst.inorderTraversal();
-        
+        // Criar o arquivo em dot. Nome pode ser alterado para o nome desejado do arquivo.
         bst.gerarArqDot("arvoreBinGerado5.dot");
     }
 }
